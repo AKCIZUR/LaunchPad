@@ -13,14 +13,14 @@ Minimalistický launcher ve Vue 3 + Vite s jemnějším air-mode vzhledem.
 ## Spuštění
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 ## Build
 
 ```bash
-npm run build
+pnpm build
 ```
 
 ## GitHub Pages
@@ -51,3 +51,8 @@ Sloupce:
 - `featured`
 
 `tags` jsou oddělené znakem `|`.
+
+
+## pnpm build scripts
+
+Tento projekt obsahuje `pnpm-workspace.yaml` s povoleným `esbuild`, takže `pnpm install` by už neměl vyhazovat `ERR_PNPM_IGNORED_BUILDS`.

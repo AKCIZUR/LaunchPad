@@ -3,7 +3,7 @@
     <Transition name="fade">
       <div v-if="app" class="modal-backdrop" @click.self="$emit('close')">
         <Transition name="sheet">
-          <section class="modal" role="dialog" aria-modal="true">
+          <section class="modal" role="dialog" aria-modal="true" :aria-label="app.name">
             <header class="modal-head">
               <div class="modal-titleblock">
                 <div class="icon" :class="`icon-${app.color}`">
@@ -15,8 +15,8 @@
                 </div>
               </div>
 
-              <button class="ghost" type="button" aria-label="Zavřít" @click="$emit('close')">
-                <X :size="18" />
+              <button class="search-trigger modal-close" type="button" aria-label="Zavřít" @click="$emit('close')">
+                <X :size="16" />
               </button>
             </header>
 

@@ -1,28 +1,23 @@
 <template>
   <main class="shell">
-    <header class="topbar" aria-label="Ovládání">
-      <button class="search-trigger" type="button" aria-label="Otevřít hledání" @click="openSearch">
-        <Search :size="18" />
-      </button>
-    </header>
-
-    <section class="stage">
+    <section class="stage" aria-label="Aplikace">
       <div class="hub">
         <p class="section-label">Aplikace</p>
 
         <TransitionGroup name="card" tag="div" class="grid">
           <AppCard
-            v-for="app in filteredApps"
+            v-for="(app, index) in filteredApps"
             :key="app.id"
             :app="app"
             :snapshot="traffic.getSnapshot(app.id)"
+            :style="{ '--delay': `${index * 22}ms` }"
             @select="select(app)"
           />
         </TransitionGroup>
       </div>
     </section>
 
-    <nav class="dock" aria-label="Filtry aplikací">
+    <nav class="dock desktop-dock" aria-label="Filtry aplikací">
       <button
         v-for="tag in tags"
         :key="tag"
@@ -35,6 +30,54 @@
       </button>
     </nav>
 
+    <button
+      class="search-trigger floating-search"
+      type="button"
+      aria-label="Otevřít hledání"
+      @click="openSearch"
+    >
+      <Search :size="18" />
+    </button>
+
+    <button
+      class="mobile-filter-trigger"
+      type="button"
+      aria-label="Otevřít tagy"
+      @click="openFilters"
+    >
+      <SlidersHorizontal :size="18" />
+    </button>
+
+    <Transition name="fade">
+      <div v-if="filtersOpen" class="filters-overlay" @click.self="filtersOpen = false">
+        <section class="filters-panel" role="dialog" aria-modal="true" aria-label="Tagy aplikací">
+          <div class="filters-head">
+            <div>
+              <p class="overlay-kicker">Tagy</p>
+              <h3>Vyber filtr</h3>
+            </div>
+
+            <button class="search-trigger modal-close" type="button" aria-label="Zavřít" @click="filtersOpen = false">
+              <X :size="16" />
+            </button>
+          </div>
+
+          <div class="pill-cloud">
+            <button
+              v-for="tag in tags"
+              :key="tag"
+              class="pill"
+              :class="{ active: activeTag === tag }"
+              type="button"
+              @click="setTag(tag)"
+            >
+              {{ tag === 'all' ? 'Vše' : tag }}
+            </button>
+          </div>
+        </section>
+      </div>
+    </Transition>
+
     <Transition name="fade">
       <div v-if="searchOpen" class="search-overlay" @click.self="closeSearch">
         <section class="search-sheet" role="dialog" aria-modal="true" aria-label="Hledání aplikací">
@@ -46,8 +89,9 @@
               type="text"
               placeholder="Hledat aplikace, tagy…"
               @keydown.esc="closeSearch"
+              @keydown.enter.prevent="openFirstResult"
             />
-            <button v-if="query" class="ghost" type="button" @click="query = ''">
+            <button v-if="query" class="ghost clear-search" type="button" aria-label="Vymazat hledání" @click="query = ''">
               <X :size="16" />
             </button>
           </div>
@@ -86,7 +130,23 @@
 
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { Search, X, Activity, Cloud, FileText, Globe, LayoutGrid, MessageCircle, Music, PhoneCall, PlayCircle, Users, Video, Sparkles } from 'lucide-vue-next'
+import {
+  Search,
+  X,
+  SlidersHorizontal,
+  Activity,
+  Cloud,
+  FileText,
+  Globe,
+  LayoutGrid,
+  MessageCircle,
+  Music,
+  PhoneCall,
+  PlayCircle,
+  Sparkles,
+  Users,
+  Video,
+} from 'lucide-vue-next'
 import AppCard from './components/AppCard.vue'
 import AppModal from './components/AppModal.vue'
 import { loadCSV } from './lib/csv'
@@ -97,6 +157,7 @@ const query = ref('')
 const activeTag = ref('all')
 const selectedApp = ref(null)
 const searchOpen = ref(false)
+const filtersOpen = ref(false)
 const searchRef = ref(null)
 const traffic = ref(null)
 
@@ -150,7 +211,13 @@ function select(app) {
   selectedApp.value = app
 }
 
+function setTag(tag) {
+  activeTag.value = tag
+  filtersOpen.value = false
+}
+
 function openSearch() {
+  filtersOpen.value = false
   searchOpen.value = true
   window.setTimeout(() => searchRef.value?.focus(), 50)
 }
@@ -159,18 +226,41 @@ function closeSearch() {
   searchOpen.value = false
 }
 
+function openFilters() {
+  searchOpen.value = false
+  filtersOpen.value = true
+}
+
 function pickFromSearch(app) {
   closeSearch()
   selectedApp.value = app
 }
 
+function openFirstResult() {
+  const first = searchResults.value[0]
+  if (!first) return
+  pickFromSearch(first)
+}
+
 function onKeydown(e) {
-  if (e.key === '/' && document.activeElement !== searchRef.value) {
+  const key = e.key.toLowerCase()
+  const isTypingTarget = ['input', 'textarea'].includes(document.activeElement?.tagName?.toLowerCase())
+
+  if ((e.ctrlKey || e.metaKey) && key === 'k') {
     e.preventDefault()
     openSearch()
+    return
   }
+
+  if (key === '/' && !isTypingTarget) {
+    e.preventDefault()
+    openSearch()
+    return
+  }
+
   if (e.key === 'Escape') {
     if (searchOpen.value) closeSearch()
+    else if (filtersOpen.value) filtersOpen.value = false
     else if (selectedApp.value) selectedApp.value = null
   }
 }

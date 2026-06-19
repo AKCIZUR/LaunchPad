@@ -1,9 +1,11 @@
 <template>
   <button class="card" type="button" @click="$emit('select')">
     <div class="card-icon-wrap">
-      <div class="card-glow" :style="{ opacity: 0.12 + snapshot.glow * 0.14 }"></div>
-      <div class="icon" :class="`icon-${app.color}`">
-        <component :is="iconComponent" />
+      <div class="card-glow" :style="{ opacity: 0.10 + snapshot.glow * 0.12 }"></div>
+      <div class="icon-shell">
+        <div class="icon" :class="`icon-${app.color}`">
+          <component :is="iconComponent" />
+        </div>
       </div>
     </div>
 
@@ -14,7 +16,20 @@
 
 <script setup>
 import { computed } from 'vue'
-import { Activity, Cloud, FileText, Globe, LayoutGrid, MessageCircle, Music, PhoneCall, PlayCircle, Users, Video, Sparkles } from 'lucide-vue-next'
+import {
+  Activity,
+  Cloud,
+  FileText,
+  Globe,
+  LayoutGrid,
+  MessageCircle,
+  Music,
+  PhoneCall,
+  PlayCircle,
+  Sparkles,
+  Users,
+  Video,
+} from 'lucide-vue-next'
 
 const props = defineProps({
   app: { type: Object, required: true },
