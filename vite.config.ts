@@ -2,10 +2,10 @@ import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import { fileURLToPath, URL } from "node:url"
 
-// GitHub Pages serves the app from the repository subpath.
-// Using a relative base keeps asset URLs working both locally and on Pages.
+const base = process.env.VITE_BASE ?? "/"
+
 export default defineConfig({
-  base: "./",
+  base,
   plugins: [vue()],
   resolve: {
     alias: {
