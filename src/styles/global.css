@@ -1,0 +1,125 @@
+:root {
+  --bg:              #07070b;
+  --bg-2:            #0d0d18;
+  --surface:         rgba(255, 255, 255, 0.042);
+  --surface-hover:   rgba(255, 255, 255, 0.072);
+  --surface-strong:  rgba(255, 255, 255, 0.095);
+
+  --border:          rgba(255, 255, 255, 0.085);
+  --border-mid:      rgba(255, 255, 255, 0.12);
+  --border-strong:   rgba(255, 255, 255, 0.18);
+
+  --text:            #f0f0f7;
+  --text-muted:      #8e8ea3;
+  --text-faint:      #4b4b5d;
+
+  --panel:           rgba(12, 12, 20, 0.82);
+  --scrim:           rgba(0, 0, 0, 0.54);
+  --vignette:        rgba(0, 0, 0, 0.60);
+
+  --accent:          #5b8cff;
+  --accent-soft:     rgba(91, 140, 255, 0.15);
+  --accent-glow:     rgba(91, 140, 255, 0.40);
+  --c-rgb:           91, 140, 255;
+
+  --radius:          16px;
+  --radius-sm:       10px;
+  --radius-lg:       22px;
+  --radius-xl:       28px;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --ease:       cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out:   cubic-bezier(0, 0, 0.28, 1);
+  --ease-in:    cubic-bezier(0.4, 0, 1, 1);
+  --dur:        0.40s;
+  --dur-fast:   0.20s;
+}
+
+:root[data-theme="light"] {
+  --bg:              #f3f4f8;
+  --bg-2:            #e7eaf2;
+  --surface:         rgba(15, 15, 30, 0.045);
+  --surface-hover:   rgba(15, 15, 30, 0.075);
+  --surface-strong:  rgba(15, 15, 30, 0.105);
+  --border:          rgba(15, 15, 30, 0.095);
+  --border-mid:      rgba(15, 15, 30, 0.14);
+  --border-strong:   rgba(15, 15, 30, 0.22);
+  --text:            #111425;
+  --text-muted:      #3c4459;
+  --text-faint:      #6e768b;
+  --panel:           rgba(255, 255, 255, 0.90);
+  --scrim:           rgba(10, 10, 28, 0.18);
+  --vignette:        rgba(10, 10, 28, 0.10);
+  --accent-soft:     rgba(91, 140, 255, 0.12);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+html {
+  transition:
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(1200px 800px at 50% 18%, rgba(255, 255, 255, 0.04), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+  font-feature-settings: "cv01", "cv02", "cv03", "cv04", "ss01";
+  transition:
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+#app {
+  height: 100dvh;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input {
+  font-family: inherit;
+}
+
+*::-webkit-scrollbar        { width: 4px; height: 4px; }
+*::-webkit-scrollbar-track  { background: transparent; }
+*::-webkit-scrollbar-thumb  { background: var(--border-mid); border-radius: 99px; }
+*::-webkit-scrollbar-thumb:hover { background: var(--text-faint); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
