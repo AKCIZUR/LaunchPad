@@ -1,0 +1,144 @@
+{
+  "apps": [
+    {
+      "id": "spotify",
+      "name": "Spotify",
+      "tagline": "Music for everyone",
+      "description": "Stream millions of songs and podcasts. Build playlists, follow friends, and let the algorithm read your mood.",
+      "url": "https://open.spotify.com",
+      "accent": "#1db954",
+      "tags": ["media", "audio"],
+      "icon": "spotify"
+    },
+    {
+      "id": "figma",
+      "name": "Figma",
+      "tagline": "Design, together",
+      "description": "Collaborative interface design in the browser. Prototype, comment, and ship from a single shared canvas.",
+      "url": "https://figma.com",
+      "accent": "#f24e1e",
+      "tags": ["design", "work"],
+      "icon": "figma"
+    },
+    {
+      "id": "slack",
+      "name": "Slack",
+      "tagline": "Where work happens",
+      "description": "Channels, threads, and huddles that keep your team aligned without drowning in email.",
+      "url": "https://slack.com",
+      "accent": "#e01e5a",
+      "tags": ["work", "social"],
+      "icon": "slack"
+    },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "tagline": "Build software, together",
+      "description": "Host code, review pull requests, and automate your pipeline. The home for millions of developers.",
+      "url": "https://github.com",
+      "accent": "#8b8b96",
+      "tags": ["dev", "work"],
+      "icon": "github"
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "tagline": "One workspace, every team",
+      "description": "Docs, wikis, and projects in a single flexible workspace that bends to how you think.",
+      "url": "https://notion.so",
+      "accent": "#cfcfcf",
+      "tags": ["work", "notes"],
+      "icon": "notion"
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "tagline": "The issue tracker you'll enjoy",
+      "description": "Streamlined issues, sprints, and roadmaps designed for high-performance product teams.",
+      "url": "https://linear.app",
+      "accent": "#5e6ad2",
+      "tags": ["dev", "work"],
+      "icon": "linear"
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "tagline": "Broadcast yourself",
+      "description": "Watch, upload, and discover video from creators around the world.",
+      "url": "https://youtube.com",
+      "accent": "#ff0033",
+      "tags": ["media", "video"],
+      "icon": "youtube"
+    },
+    {
+      "id": "gmail",
+      "name": "Gmail",
+      "tagline": "Email that's intuitive",
+      "description": "Fast, searchable email with smart filters and a clean, focused inbox.",
+      "url": "https://mail.google.com",
+      "accent": "#ea4335",
+      "tags": ["work", "comms"],
+      "icon": "gmail"
+    },
+    {
+      "id": "discord",
+      "name": "Discord",
+      "tagline": "Your place to talk",
+      "description": "Voice, video, and text communities for friends, games, and creators.",
+      "url": "https://discord.com",
+      "accent": "#5865f2",
+      "tags": ["social", "comms"],
+      "icon": "discord"
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "tagline": "Develop. Preview. Ship.",
+      "description": "The platform for frontend developers, delivering speed and reliability at the edge.",
+      "url": "https://vercel.com",
+      "accent": "#d6d6db",
+      "tags": ["dev", "work"],
+      "icon": "vercel"
+    },
+    {
+      "id": "x",
+      "name": "X",
+      "tagline": "What's happening",
+      "description": "The global town square for real-time conversation and breaking news.",
+      "url": "https://x.com",
+      "accent": "#c9c9d1",
+      "tags": ["social", "news"],
+      "icon": "x"
+    },
+    {
+      "id": "maps",
+      "name": "Maps",
+      "tagline": "Find your way",
+      "description": "Navigate, explore, and discover places with live traffic and transit.",
+      "url": "https://maps.google.com",
+      "accent": "#34a853",
+      "tags": ["utility", "travel"],
+      "icon": "maps"
+    },
+    {
+      "id": "arc",
+      "name": "Arc",
+      "tagline": "The browser, reimagined",
+      "description": "A calmer way to use the internet with spaces, split view, and a built-in command bar.",
+      "url": "https://arc.net",
+      "accent": "#ff6f61",
+      "tags": ["utility", "dev"],
+      "icon": "arc"
+    },
+    {
+      "id": "calendar",
+      "name": "Calendar",
+      "tagline": "Plan your time",
+      "description": "Schedule meetings, set reminders, and keep every commitment in view.",
+      "url": "https://calendar.google.com",
+      "accent": "#4285f4",
+      "tags": ["work", "utility"],
+      "icon": "calendar"
+    }
+  ]
+}
